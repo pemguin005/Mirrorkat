@@ -106,13 +106,14 @@ echo -e "The following files from:\n\t$SRC_LOC\n\nAre not found nested under:\n\
 		--auto-close --auto-kill --pulsate
 		[[ $? -eq 1 ]] && exit 0
 
+
 			# The Reporting Window and log production
 			cat "$LOG_FILE" |
 			yad --center --title="MirrorKat - Checksum Checker" \
 			--text="<b>\Checksum report.</b>\n\tThis log file has also been placed on the desktop." \
-			--text-info --text-align=center --width=700 --height=400 \ 	
+			--text-info --text-align=center --width=700 --height=400 	
 	
-	exit 0
+	exec bash Mirrorkat
 	
 elif [[ $BUTTON -eq 3 ]]; then
 
@@ -162,12 +163,14 @@ done
 		yad --progress --title="MirrorKat - Syncer" --text-align=center \
 		--width=500 --height=100 --window-icon=gtk-yes --borders=20 --center \
 		--auto-close --auto-kill --pulsate
-[[ $? -eq 1 ]] && exit 1
+	[[ $? -eq 1 ]] && exit 1
 
-yad --title="MirrorKat - Syncer" --text-align=center \
+	yad --title="MirrorKat - Syncer" --text-align=center \
 		--width=500 --height=150 --window-icon=gtk-yes --borders=20 --center \
-		--text="<big>All files synced to:</big>\n\n$DST_LOC." \
-
+		--text="<big>All files synced to:</big>\n\n$DST_LOC." 
+			[[ $? -eq 1 ]] && exit 1
+	exec bash Mirrorkat
+	
 elif [[ $BUTTON -eq 4 ]]; then
 # ####################################
 # #         Sequence Renamer         #
@@ -195,10 +198,11 @@ elif [[ $BUTTON -eq 4 ]]; then
 	i=$(($i+1))
 	done
 
-yad --title="MirrorKat - Syncer" --text-align=center \
+	yad --title="MirrorKat - Syncer" --text-align=center \
 		--width=500 --height=150 --window-icon=gtk-yes --borders=20 --center \
-		--text="<big>All files have been renamed:</big>\n\n"$NEWNAME"_"`date +%Y%m%d`"_000#.Ext" \
+		--text="<big>All files have been renamed:</big>\n\n"$NEWNAME"_"`date +%Y%m%d`"_000#.Ext" 
 
+	exec bash Mirrorkat
 fi
 
 exit 
