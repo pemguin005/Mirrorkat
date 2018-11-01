@@ -7,6 +7,7 @@
 #		+ Checksum Feature rebuilt
 #		+ Copy tool rebuilt
 #		+ Rename Sequencer rebuilt
+#		+ Rename Sequencer now uses a calendar selector for dates.
 
 # v0.5 YAD version
 #		+ Expanded modern windows with YAD	
@@ -113,7 +114,7 @@ echo -e "The following files from:\n\t$SRC_LOC\n\nAre not found nested under:\n\
 			--text="<b>\Checksum report.</b>\n\tThis log file has also been placed on the desktop." \
 			--text-info --text-align=center --width=700 --height=400 	
 	
-	exec bash Mirrorkat
+	exec bash mirrorkat
 	
 elif [[ $BUTTON -eq 3 ]]; then
 
@@ -169,7 +170,7 @@ done
 		--width=500 --height=150 --window-icon=gtk-yes --borders=20 --center \
 		--text="<big>All files synced to:</big>\n\n$DST_LOC." 
 			[[ $? -eq 1 ]] && exit 1
-	exec bash Mirrorkat
+	exec bash mirrorkat
 	
 elif [[ $BUTTON -eq 4 ]]; then
 # ####################################
@@ -178,19 +179,20 @@ elif [[ $BUTTON -eq 4 ]]; then
 
 	# Get Comparison sources
 	RNM_FORM=$(yad --title="MirrorKat - Sequence Renamer" --text-align=center \
-		--width=500 --height=200 --window-icon=gtk-yes --borders=20 --center \
+		--width=400 --height=200 --window-icon=gtk-yes --borders=20 --center \
 		--text="<b>Renaming will follow the pattern:</b>\n\nNewName_YYYYMMDD_000#.Extension" \
 		--form \
 		--field="Path to files":MDIR "$HOME/Videos" \
 		--field="New Name" "PhotoShoot" \
+		--field="Shoot Date":DT --date-format=%Y%m%d
 		)
 	[ $? -eq 1 ] && exit 1
 
 	# Parsing information
 	SRC_PATH=$(echo $RNM_FORM|cut -d'|' -f1)
 	NEWNAME=$(echo $RNM_FORM|cut -d'|' -f2)
-	DATE=`date +%Y%m%d`
-
+	DATE=$(echo $RNM_FORM|cut -d'|' -f3)
+	
 	i=0
 	# Batch Rename
 	for file in $SRC_PATH/*; do
@@ -200,9 +202,9 @@ elif [[ $BUTTON -eq 4 ]]; then
 
 	yad --title="MirrorKat - Syncer" --text-align=center \
 		--width=500 --height=150 --window-icon=gtk-yes --borders=20 --center \
-		--text="<big>All files have been renamed:</big>\n\n"$NEWNAME"_"`date +%Y%m%d`"_000#.Ext" 
+		--text="<big>All files have been renamed:</big>\n\n"$NEWNAME"_"$DATE"_0000..." 
 
-	exec bash Mirrorkat
+	exec bash mirrorkat
 fi
 
 exit 
