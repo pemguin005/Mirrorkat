@@ -20,9 +20,8 @@
  I'm hardly a programmer and so it's mostly simple bash commands piped into YAD for some easier usability. There are definitely better ways to do this, but I'm  working only with what abilities the Linux+ gave me. ;P
 
 # Testing
- I'm still dealing with testing and debugging, particulalry when related to YAD. There isn't a lot of documentation out there for it, and I feel like i get some mixed results when making cancel buttons actually cancel, and not continue with the rest of the program.
+ I'm still dealing with testing and debugging, particulalry when related to YAD. There isn't a lot of documentation out there for it. I'm also working with only the programming knowledge the Linux+ has given me.
  
- That said, I wrote it on in a rush, with little bash scripting experience (maybe my 3rd script) and so it's likely chock full of little issues.
 
 # See Also:
  rsync, https://git://git.samba.org/rsync.git

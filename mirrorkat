@@ -53,6 +53,7 @@ if [[ $BUTTON -eq 2 ]]; then
 		--field="Already in here":MDIR "$HOME/Videos" \
 		
 )
+[[ $? -eq 1 ]] && exit 0
 
 LOG_FILE=$HOME/Desktop/Unsynced.log
 touch $LOG_FILE
@@ -164,12 +165,12 @@ done
 		yad --progress --title="MirrorKat - Syncer" --text-align=center \
 		--width=500 --height=100 --window-icon=gtk-yes --borders=20 --center \
 		--auto-close --auto-kill --pulsate
-	[[ $? -eq 1 ]] && exit 1
+	[[ $? -eq 1 ]] && exit 0
 
 	yad --title="MirrorKat - Syncer" --text-align=center \
 		--width=500 --height=150 --window-icon=gtk-yes --borders=20 --center \
 		--text="<big>All files synced to:</big>\n\n$DST_LOC." 
-			[[ $? -eq 1 ]] && exit 1
+	[[ $? -eq 1 ]] && exit 0
 	exec bash mirrorkat
 	
 elif [[ $BUTTON -eq 4 ]]; then
@@ -203,6 +204,7 @@ elif [[ $BUTTON -eq 4 ]]; then
 	yad --title="MirrorKat - Syncer" --text-align=center \
 		--width=500 --height=150 --window-icon=gtk-yes --borders=20 --center \
 		--text="<big>All files have been renamed:</big>\n\n"$NEWNAME"_"$DATE"_0000..." 
+	[[ $? -eq 1 ]] && exit 0
 
 	exec bash mirrorkat
 fi
