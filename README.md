@@ -4,12 +4,13 @@
  Simple GUI running rsync, md5sum, YAD and bash commands for quick MD5 verification, rsyncing, and renaming files.
  
 # Getting Started
- Run from terminal or add to your $PATH to execute it as a program.
+ Run the install.sh file from terminal or add to your $PATH to execute it as a program.
  
- You'll need to install yad beforehand, and any libraries it will want.
- I just ran on debian
- 
- sudo apt install yad
+ You'll need to install yad beforehand, and any dependancies/libraries yad requires.
+
+For debian based distros this is enough: 
+
+sudo apt install yad
  
 
 # Description 
