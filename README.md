@@ -1,7 +1,7 @@
 # Mirrorkat
 
 # SYNOPSIS
- Simple GUI to blend rsync, md5sum, YAD and bash functinoality. The software will verify MD5 checksums, rsync anything not currently synced, and renaming files for project and date organization. Built for a specific company's project but can be easily modified as needed. 
+ Simple GUI to blend rsync, md5sum, YAD and bash functionality. The software will verify MD5 checksums, rsync anything not currently synced, and renaming files for project and date organization. Built for a specific company's project but can be easily modified as needed. 
  
 # Getting Started
  Run the install.sh file from terminal or add to your $PATH to execute it as a program.
